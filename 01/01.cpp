@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
+#include "types.hpp"
 
 using namespace std;
 
-typedef long long ll;
-typedef vector<ll> vecLL;
 
 int main() {
     ios::sync_with_stdio(0);
@@ -26,6 +25,7 @@ int main() {
     // Build both lists from input
     while (inputFile >> l1 >> l2) {
         cout << "l1: " << l1 << " l2: " << l2 << '\n';
+        
         list1.push_back(l1);
         list2.push_back(l2);
     }
