@@ -25,7 +25,7 @@ int main() {
     getline(cin, filename);
 
     // Read input and prepare vectors
-    ifstream inputFile("01/" + filename);
+    ifstream inputFile("day-1/" + filename);
 
     if (!inputFile.is_open()) {
         cerr << "Unable to read input file.\n";
