@@ -1,7 +1,4 @@
-# Specify the compiler
 CXX = g++
-
-# Compilation flags
 CXXFLAGS = -std=c++20 -Wall -O2
 
 # Target to compile and run a specific file
