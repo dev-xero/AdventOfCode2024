@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
+
 #include "types.hpp"
 
 using namespace std;
-
 
 int main() {
     ios::sync_with_stdio(0);
@@ -25,7 +25,7 @@ int main() {
     // Build both lists from input
     while (inputFile >> l1 >> l2) {
         cout << "l1: " << l1 << " l2: " << l2 << '\n';
-        
+
         list1.push_back(l1);
         list2.push_back(l2);
     }
@@ -40,7 +40,7 @@ int main() {
     // Compare each element and sum absolute diff (both lists are same size)
     ll diff = 0;
 
-    for (size_t i = 0; i < list1.size(); i++) {
+    for (int i = 0; i < list1.size(); i++) {
         diff += abs(list1[i] - list2[i]);
     }
 
