@@ -3,11 +3,29 @@
 using namespace std;
 
 int computeFlaggedMuls(const string& line) {
+    bool isEnabled = true;
     int subComputation = 0;
 
     // We're going to read the substring of each (idx, idx+4) to match a
     // `mult(` sequence
     for (size_t i = 0; i + 4 <= line.size(); i++) {
+        // Scan the line for do() / don't() sequences
+        if (line.substr(i, 4) == "do()") {
+            cout << "'do' detected at idx: " << i << '\n';
+            isEnabled = true;
+            i += 3;
+            continue;
+        }
+
+        if (i + 7 <= line.size() && line.substr(i, 7) == "don't()") {
+            cout << "'do' detected at idx: " << i << '\n';
+            isEnabled = false;
+            i += 6;
+            continue;
+        }
+
+        cout << "enabled: " << isEnabled << '\n';
+
         if (line.substr(i, 4) == "mul(") {
             int a = 0;
             int b = 0;
@@ -19,10 +37,9 @@ int computeFlaggedMuls(const string& line) {
 
                 sscanf(line.c_str() + i, "mul(%d,%d%c", &a, &b, &ch);
 
-                // Edge case: must be closed by a ')' character
                 if (ch != ')') continue;
 
-                subComputation += a * b;
+                if (isEnabled) subComputation += a * b;
             }
         }
     }
@@ -50,14 +67,14 @@ int main() {
 
     // The input is a long string where each line contains some `mul(a,b)`
     // instructions
-    string token;
+    string line;
     int computation = 0;
 
-    while (inputFile >> token) {
-        computation += computeFlaggedMuls(token);
+    while (getline(inputFile, line)) {
+        computation += computeFlaggedMuls(line);
     }
 
-    cout << "computed: " << computation << '\n';
+    cout << "computed flagged muls: " << computation << '\n';
 
     return 0;
 }
